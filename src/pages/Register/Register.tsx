@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import Features from '../components/Features/Features';
-import IllustrationPeople from '../components/IllustrationPeople/IllustrationPeople';
-import RegisterForm from '../components/RegisterForm/RegisterForm';
-import { Container } from '../styles/GlobalStyles';
+import Features from '../../components/Features/Features';
+import IllustrationPeople from '../../components/IllustrationPeople/IllustrationPeople';
+import RegisterForm from '../../components/RegisterForm/RegisterForm';
+import { Container } from '../../styles/GlobalStyles';
 import { Wrapper } from './Register.styled';
 
 export default function Register() {

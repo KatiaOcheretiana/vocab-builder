@@ -11,6 +11,9 @@ export const LogoWrapper = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
+    padding: 22px 100px;
+    max-width: 1440px;
+    margin: 0 auto;
   }
 `;
 

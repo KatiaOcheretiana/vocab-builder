@@ -13,7 +13,7 @@ export const Image = styled.img`
     display: block;
     width: 498px;
     height: 435px;
-    margin-top: 120px;
+    margin-top: 0;
     margin-bottom: 0;
   }
 `;
