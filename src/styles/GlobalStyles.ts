@@ -1,5 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import 'modern-normalize';
+import { globalColor, globalFonts } from './root.ts';
 
 // import Helvetica from '../../public/fonts/SF-Pro-Display-Heavy.otf';
 // import Helvetica from '../../public/fonts/SF-Pro-Display-HeavyItalic.otf';
@@ -184,8 +185,8 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-font-family: "MacPaw Fixel Display", sans-serif;
- color: #101828;
+font-family: ${globalFonts.main};
+ color: ${globalColor.black};
  font-size: 16px;
 line-height: 1.50;
 
@@ -229,7 +230,18 @@ button {
 `;
 
 export const Container = styled.div`
-  width: 1440px;
-  padding: 0 64px;
-  margin: 0 auto;
+  @media screen and (min-width: 320px) {
+    width: 100%;
+    /* padding: 0 16px; */
+    margin: 0 auto;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 0 32px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    max-width: 1440px;
+    padding: 0 100px;
+  }
 `;
