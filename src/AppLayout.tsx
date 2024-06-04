@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
-import { GlobalStyles } from './styles/GlobalStyles';
 import Navigation from './components/Navigation/Navigation';
+import { Toaster } from 'react-hot-toast';
 
 export const AppLayout = () => {
   return (
@@ -12,7 +12,7 @@ export const AppLayout = () => {
           <Outlet />
         </Suspense>
       </main>
-      <GlobalStyles />
+      <Toaster position="top-right" reverseOrder={false} />
     </>
   );
 };

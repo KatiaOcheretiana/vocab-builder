@@ -1,11 +1,16 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { Discription, Form, Title, Wrapper } from './LoginForm.styled';
 import ButtonRegisterLogin from '../ButtonRegisterLogin/ButtonRegisterLogin';
 import LinkRegisterLogin from '../LinkRegisterLogin/LinkRegisterLogin';
 import FormField from '../FormField/FormField';
+import { AppDispatch } from '../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../redux/auth/operations';
+import { useNavigate } from 'react-router-dom';
+import { selectUserName } from '../../redux/auth/selectors';
 
 const schema = yup.object().shape({
   email: yup
@@ -30,6 +35,10 @@ type Inputs = {
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
+  const userName = useSelector(selectUserName);
+
+  const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
   const toggleShowPassword = () => setShowPassword(!showPassword);
 
   const {
@@ -42,8 +51,14 @@ export default function LoginForm() {
   });
 
   const onSubmitHandler = (data: Inputs) => {
-    console.log({ data });
+    dispatch(login(data));
   };
+
+  useEffect(() => {
+    if (userName) {
+      navigate('/dictionary');
+    }
+  }, [userName]);
 
   return (
     <Wrapper>

@@ -1,11 +1,17 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { Discription, Form, Title, Wrapper } from './RegisterForm.styled';
 import ButtonRegisterLogin from '../ButtonRegisterLogin/ButtonRegisterLogin';
 import LinkRegisterLogin from '../LinkRegisterLogin/LinkRegisterLogin';
 import FormField from '../FormField/FormField';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { AppDispatch } from '../../redux/store';
+import { registration } from '../../redux/auth/operations';
+import { selectUserName } from '../../redux/auth/selectors';
+import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object().shape({
   name: yup.string().required('Name is required'),
@@ -17,7 +23,7 @@ const schema = yup.object().shape({
     .string()
     .matches(
       /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}$/,
-      'Password must contain both letters and numbers'
+      'The password must consist of 6 English letters and 1 number.'
     )
     .min(6, 'Password must be at least 7 characters long')
     .required('Password is required'),
@@ -33,6 +39,10 @@ export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   const toggleShowPassword = () => setShowPassword(!showPassword);
+  const userName = useSelector(selectUserName);
+
+  const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -44,8 +54,14 @@ export default function RegisterForm() {
   });
 
   const onSubmitHandler = (data: Inputs) => {
-    console.log({ data });
+    dispatch(registration(data));
   };
+
+  useEffect(() => {
+    if (userName) {
+      navigate('/dictionary');
+    }
+  }, [userName]);
 
   return (
     <Wrapper>

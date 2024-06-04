@@ -11,6 +11,7 @@ function App() {
         <Route index element={<p>Home</p>} />
         <Route path="register" element={<Register />} />
         <Route path="login" element={<Login />} />
+        <Route path="dictionary" element={<p>dictionary</p>} />
         <Route path="*" element={<p>404</p>} />
       </Route>
     </Routes>
