@@ -3,7 +3,7 @@ import Features from '../../components/Features/Features';
 import IllustrationPeople from '../../components/IllustrationPeople/IllustrationPeople';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import { Container } from '../../styles/GlobalStyles';
-import { Wrapper } from './Register.styled';
+import { BoxDecoration, Wrapper } from './Register.styled';
 
 export default function Register() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -29,6 +29,7 @@ export default function Register() {
         </div>
         <RegisterForm />
       </Wrapper>
+      <BoxDecoration></BoxDecoration>
     </Container>
   );
 }
